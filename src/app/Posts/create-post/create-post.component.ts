@@ -1,16 +1,30 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Post} from "../post.model";
+import {NgForm} from '@angular/forms';
+import {PostService} from "../post.service";
 
 @Component({
   selector: 'app-create-post',
   templateUrl: './create-post.component.html',
   styleUrls: ['./create-post.component.css']
 })
-export class CreatePostComponent {
-  newPost: any = "No Content";
-  enteredValue: any;
+export class CreatePostComponent implements OnInit {
 
-  onAddPost() {
-    this.newPost = this.enteredValue
-    alert(this.newPost);
+  constructor(public postService: PostService) {
+  }
+
+  ngOnInit() {
+
+  }
+
+  onAddPost(form:NgForm) {
+
+    if(form.invalid)
+    {
+      return;
+    }
+
+    this.postService.addPost(form.value.title, form.value.content);
+    form.resetForm();
   }
 }

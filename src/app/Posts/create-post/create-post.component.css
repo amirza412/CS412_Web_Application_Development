@@ -1,9 +1,14 @@
 mat-card {
-  width: 75%;
-  margin: auto;
+  margin: 5px;
 }
 
 button{
-  margin-top: 10px;
+  margin: 5px;
   width: 25%;
+}
+
+form {
+  width: 50%;
+  margin: auto;
+  display: grid;
 }
