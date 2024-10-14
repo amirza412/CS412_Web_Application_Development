@@ -3,10 +3,6 @@ import bodyParser from 'body-parser'
 import mongoose from 'mongoose';
 import Post from "./model/post.js";
 
-//mongodb+srv://<db_username>:<db_password>@cluster0.fefq9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-//mongodb+srv://abmirza:H4e8cTHwZWMyHAxT@cluster0.fefq9.mongodb.net/mean_app?retryWrites=true&w=majority&appName=Cluster0
-//abmirza H4e8cTHwZWMyHAxT
-
 mongoose.connect(process.env.MongoDB)
     .then( () => {
         console.log('Connected to MongoDB');
