@@ -7,7 +7,7 @@
     </mat-form-field>
 
     <mat-form-field>
-      <textarea matInput rows="4" name="content" placeholder="Enter Content" ngModel required minlength="5" #content  ="ngModel"> </textarea>
+      <textarea matInput rows="4" name="content" placeholder="Enter Content" ngModel required minlength="5" #content="ngModel"> </textarea>
       <mat-error *ngIf="content.invalid">Content is required</mat-error>
     </mat-form-field>
     <button mat-raised-button color="primary" type="submit">Submit</button>

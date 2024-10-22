@@ -4,16 +4,16 @@ import mongoose from 'mongoose';
 import Post from "./model/post.js";
 
 mongoose.connect(process.env.MongoDB)
-    .then( () => {
+    .then(() => {
         console.log('Connected to MongoDB');
-    }).catch(()=>{
-        console.log('Error connecting to MongoDB');
+    }).catch(() => {
+    console.log('Error connecting to MongoDB');
 })
 const app = express();
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 
-app.use((req,res,next)=>{
+app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
         'Access-Control-Allow-Headers',
@@ -32,24 +32,39 @@ app.post('/api/posts', (req, res, next) => {
         {
             title: req.body.title,
             content: req.body.content,
-        }
-    );
+        });
 
-    console.log(post);
-    post.save();
-    res.status(201).json(
-        {success:true}
-    );
+    post.save().then(result => {
+        console.log(result);
+        res.status(201).json(
+            {
+                success: true,
+                postId: result._id
+            }
+        );
+    })
 })
 
-app.get('/api/posts',(req, res) => {
-    const posts =[
-        {id:'id1', title:'first server side title', content:'First server side title'},
-        {id:'id2', title:'second server side title', content:'second server side title'},
-        {id:'id3', title:'third server side title', content:'third server side title'}
-    ]
-    res.status(200).json({success: true, data: posts});
+app.get('/api/posts', (req, res) => {
+    Post.find()
+        .then(data => {
+            res.status(200).json({
+                success: true,
+                data: data
+            });
 
+        })
+
+})
+
+app.delete('/api/posts/:id', (req, res, next) => {
+    Post.deleteOne({_id: req.params.id}).then(result => {
+        console.log(result);
+        res.status(200).json({
+            success: true
+        });
+
+    })
 })
 
 export default app;
