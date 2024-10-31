@@ -12,3 +12,7 @@ form {
   margin: auto;
   display: grid;
 }
+
+mat-spinner{
+  margin: auto;
+}

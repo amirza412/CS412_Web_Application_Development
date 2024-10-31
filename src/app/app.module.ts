@@ -16,6 +16,7 @@ import {FormsModule} from "@angular/forms";
 import { CreatePostComponent } from './Posts/create-post/create-post.component';
 import { PostListComponent } from './Posts/post-list/post-list.component';
 import {HttpClientModule} from "@angular/common/http";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -25,19 +26,20 @@ import {HttpClientModule} from "@angular/common/http";
     CreatePostComponent,
     PostListComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MatToolbarModule,
-    MatButtonModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatExpansionModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        MatToolbarModule,
+        MatButtonModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatExpansionModule,
+        MatProgressSpinnerModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
