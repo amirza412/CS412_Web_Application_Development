@@ -15,8 +15,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from "@angular/forms";
 import { CreatePostComponent } from './Posts/create-post/create-post.component';
 import { PostListComponent } from './Posts/post-list/post-list.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import {AuthInterceptor} from "./auth/auth-interceptor";
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     HeaderComponent,
     FooterComponent,
     CreatePostComponent,
-    PostListComponent
+    PostListComponent,
+    LoginComponent,
+    SignupComponent
   ],
     imports: [
         BrowserModule,
@@ -40,7 +45,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
         MatExpansionModule,
         MatProgressSpinnerModule
     ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
