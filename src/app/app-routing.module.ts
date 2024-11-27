@@ -5,6 +5,7 @@ import {CreatePostComponent} from "./Posts/create-post/create-post.component";
 import {SignupComponent} from "./auth/signup/signup.component";
 import {LoginComponent} from "./auth/login/login.component";
 import {authGuard} from "./auth/auth.guard";
+import {CatFactComponent} from "./cat-fact/cat-fact.component";
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'edit/:postId', component: CreatePostComponent, canActivate: [authGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
+  {path: 'catfact', component: CatFactComponent},
 ];
 
 @NgModule({

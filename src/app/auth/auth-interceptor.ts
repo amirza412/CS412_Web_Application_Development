@@ -8,6 +8,11 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler){
+
+        if(req.url.includes('catfact.ninja/fact')){
+            return next.handle(req);
+        }
+
         const authToken = this.authService.getToken();
         const authRequest = req.clone({
             headers: req.headers.set('authorization', 'Bearer ' + authToken)
